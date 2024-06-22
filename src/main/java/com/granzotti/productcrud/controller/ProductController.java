@@ -21,6 +21,7 @@ import javax.validation.Valid;
 
 @Tag(name = "Product", description = "Product API")
 @RestController
+@CrossOrigin
 public class ProductController {
 
     @Autowired
