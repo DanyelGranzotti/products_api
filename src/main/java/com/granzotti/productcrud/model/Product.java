@@ -1,6 +1,7 @@
 package com.granzotti.productcrud.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product")
+@Data
 public class Product {
 
     @Id
@@ -42,19 +44,19 @@ public class Product {
 
     }
 
-    public Object getProductName() {
+    public @NotBlank(message = "O nome do produto não pode ser vazio") String getProductName() {
         return productName;
     }
 
-    public Object getProductDescription() {
+    public @NotBlank(message = "A descrição do produto não pode ser vazia") String getProductDescription() {
         return productDescription;
     }
 
-    public Object getProductPrice() {
+    public @NotNull(message = "O preço do produto não pode ser vazio") @Min(value = 0, message = "O preço do produto não pode ser negativo") double getProductPrice() {
         return productPrice;
     }
 
-    public Object isProductDisponibility() {
+    public @NotNull(message = "A disponibilidade do produto não pode ser vazia") boolean isProductDisponibility() {
         return productDisponibility;
     }
 }
